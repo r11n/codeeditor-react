@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import PropTypes from 'prop-types';
-import * as MonacoMain from 'monaco-editor/esm/vs/editor/editor.main';
-
 function processSize(size) {
     return !/^\d+$/.test(size) ? size : `${size}px`;
 }
@@ -19,7 +17,6 @@ class Editor extends Component {
     }
 
     componentDidMount() {
-        console.log(MonacoMain.languages.getLanguages().join(', '))
         this.initMonaco();
     }
 

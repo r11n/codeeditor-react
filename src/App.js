@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Editor from './Editor';
+import { EditorConfig } from './utils/EditorConfig';
 
 class App extends Component {
   constructor(props) {
@@ -27,32 +28,19 @@ class App extends Component {
   }
   render() {
     const { code } = this.state;
-    const options = {
-      selectOnLineNumbers: true,
-      roundedSelection: false,
-      readOnly: false,
-      cursorStyle: 'line',
-      automaticLayout: false,
-      lineNumbers: 'on'
-    };
+    const options = EditorConfig.default_conf();
     return (
       <React.Fragment>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Monaco Editor
-          </p>
-        </header>
+      <div>
+        <Editor
+          height="500"
+          language="javascript"
+          value={code}
+          options={options}
+          onChange={this.onChange}
+          editorDidMount={this.editorDidMount}
+        />
       </div>
-      <Editor
-        height="500"
-        language="javascript"
-        value={code}
-        options={options}
-        onChange={this.onChange}
-        editorDidMount={this.editorDidMount}
-      />
       </React.Fragment>
     );
   }
