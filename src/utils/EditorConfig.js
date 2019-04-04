@@ -18,5 +18,43 @@ export const EditorConfig =  {
                 wordWrap: 'wordWrapColumn',
                 wordWrapColumn: 150,
         };
+    },
+
+    default_code: (language, defCode) => {
+        const codeString = defCode || "Your code goes here..."
+        const hash = `# ${codeString}\n`;
+        const slash = `// ${codeString}\n`;
+        const slashStar = `/* ${codeString}*/\n`;
+        const lessExc = `<!-- ${codeString}-->\n`;
+        const dashdash = `-- ${codeString}\n`
+        const exc = `! ${codeString}\n`
+
+        const commentConfig = {
+            // hash comments
+            coffeescript: hash,
+            perl: hash,
+            python: hash,
+            ruby: hash,
+            // slash comments
+            java: slash,
+            javascript: slash,
+            php: slash,
+            scala: slash,
+            swift: slash,
+            // slashStart comments
+            c: slashStar,
+            cpp: slashStar,
+            css: slashStar,
+            // lessExc comments
+            html: lessExc,
+            xml: lessExc,
+            // dashdash
+            sql: dashdash,
+            mysql: dashdash,
+            pgsql: dashdash,
+            // others
+            fortran: exc,
+        }
+        return commentConfig[language]|| "";
     }
 }
