@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import { fromShortcode } from './utils/Convert';
 import './App.css';
 import Editor from './Editor';
 import { EditorConfig } from './utils/EditorConfig';
@@ -48,7 +46,6 @@ class App extends Component {
   render() {
     const { code, language } = this.state;
     const options = EditorConfig.default_conf();
-    console.log(fromShortcode('Bv1hxDplc-4'));
     return (
       <React.Fragment>
       <div>
