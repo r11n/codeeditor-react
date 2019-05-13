@@ -2,6 +2,20 @@ import React, { Component } from 'react';
 import './App.css';
 import Editor from './Editor';
 import { EditorConfig } from './utils/EditorConfig';
+import LeftBar from './LeftBar';
+const AllContainer = {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '100%',
+  height: '100%',
+  position: 'absolute',
+  top: '0',
+  bottom: '0',
+}
+const EditorContainer = {
+  flexGrow: '1',
+}
 class App extends Component {
   constructor(props) {
     super(props);
@@ -47,21 +61,23 @@ class App extends Component {
     const { code, language } = this.state;
     const options = EditorConfig.default_conf();
     return (
-      <React.Fragment>
-      <div>
-        <select value={this.state.language} onChange={this.languageChange}>
-          { EditorConfig.languageIds().map(language => <option value={language} key={language}>{language}</option>) }
-        </select>
-        <Editor
-          height="99vh"
-          language={language}
-          value={code}
-          options={options}
-          onChange={this.onChange}
-          editorDidMount={this.editorDidMount}
-        />
+
+      <div style={AllContainer}>
+        <LeftBar />
+        <div style={EditorContainer}>
+          <select value={this.state.language} onChange={this.languageChange}>
+            { EditorConfig.languageIds().map(language => <option value={language} key={language}>{language}</option>) }
+          </select>
+          <Editor
+            height="99vh"
+            language={language}
+            value={code}
+            options={options}
+            onChange={this.onChange}
+            editorDidMount={this.editorDidMount}
+          />
+        </div>
       </div>
-      </React.Fragment>
     );
   }
 }
